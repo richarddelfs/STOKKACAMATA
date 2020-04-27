@@ -74,6 +74,7 @@ public class HalamanPegawai extends AppCompatActivity {
     }
 
     public void setupdata(){
+        list.clear();
         mDatabase.child("ProfilePegawai").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

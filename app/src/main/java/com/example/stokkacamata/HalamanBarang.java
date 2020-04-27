@@ -458,6 +458,7 @@ public class HalamanBarang extends AppCompatActivity {
     }
 
     public void setupdata(){
+        list.clear();
         mDatabase.child("ProfileBarang").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
