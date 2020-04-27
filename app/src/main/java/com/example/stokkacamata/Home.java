@@ -64,9 +64,6 @@ public class Home extends AppCompatActivity {
         listView.setLayoutManager(layoutManager);
         listView.setAdapter(productAdapter);
 
-        setupdata();
-
-
         TextNamaToko.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
