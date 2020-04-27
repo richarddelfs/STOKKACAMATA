@@ -344,10 +344,11 @@ public class HalamanBarang extends AppCompatActivity {
         //ref = FirebaseDatabase.getInstance().getReference().child("ProfileBarang");
 
         listView = findViewById(R.id.listview3);
-        adapter1 = new AdapterClassBarang();
-        listView.setHasFixedSize(true);
 
-        // use a linear layout manager
+        /* Setup RecyclerView */
+        adapter1 = new AdapterClassBarang();
+        adapter1.delegate = this;
+        listView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         listView.setLayoutManager(layoutManager);
         listView.setAdapter(adapter1);

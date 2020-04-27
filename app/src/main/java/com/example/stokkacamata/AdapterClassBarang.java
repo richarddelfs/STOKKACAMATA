@@ -53,6 +53,8 @@
 //}
 package com.example.stokkacamata;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,6 +69,7 @@ import com.squareup.picasso.Picasso;
 public class AdapterClassBarang extends RecyclerView.Adapter<AdapterClassBarang.MyViewHolder> {
 
     ArrayList<ProfileBarang> list = new ArrayList<>();
+    Activity delegate = new Activity();
 
     @NonNull
     @Override
@@ -99,7 +102,7 @@ public class AdapterClassBarang extends RecyclerView.Adapter<AdapterClassBarang.
             jumlah = itemView.findViewById(R.id.tv_product_quantity);
         }
 
-        void onBindContent(ProfileBarang profileBarang){
+        void onBindContent(final ProfileBarang profileBarang){
 
             if (!profileBarang.getProfilepicturebarang().isEmpty()){
                 Picasso.get().load(profileBarang.getProfilepicturebarang()).into(barangImageView);
@@ -114,6 +117,19 @@ public class AdapterClassBarang extends RecyclerView.Adapter<AdapterClassBarang.
             tipe.setText(profileBarang.getTipe());
             warna.setText(profileBarang.getWarna());
             jumlah.setText(profileBarang.getJumlah());
+
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    Intent updateDelete = new Intent(delegate, EditHapusBarang.class);
+                    updateDelete.putExtra("nama", profileBarang.getNama());
+                    updateDelete.putExtra("merk", profileBarang.getMerk());
+                    updateDelete.putExtra("tipe", profileBarang.getTipe());
+                    updateDelete.putExtra("warna", profileBarang.getWarna());
+                    updateDelete.putExtra("jumlah", profileBarang.getJumlah());
+                    delegate.startActivity(updateDelete);
+                }
+            });
         }
     }
 }

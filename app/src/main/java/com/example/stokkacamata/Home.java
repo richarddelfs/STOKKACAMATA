@@ -58,6 +58,7 @@ public class Home extends AppCompatActivity {
 
         /* Setup Adapter */
         productAdapter = new AdapterClassBarang();
+        productAdapter.delegate = this;
         listView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         listView.setLayoutManager(layoutManager);
