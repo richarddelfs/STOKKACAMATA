@@ -351,54 +351,7 @@ public class HalamanBarang extends AppCompatActivity {
         // use a linear layout manager
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         listView.setLayoutManager(layoutManager);
-
-//        FirebaseListOptions<ProfileBarang> options = new FirebaseListOptions.Builder<ProfileBarang>()
-//                .setLayout(R.layout.barang_info)
-//                .setQuery(query, ProfileBarang.class)
-//                .build();
-//
-//        adapter1 = new FirebaseListAdapter(options) {
-//            @Override
-//            protected void populateView(View v, Object model, int position) {
-//                ImageView imageView = v.findViewById(R.id.profilebarang1);
-//                TextView nama = v.findViewById(R.id.namabarang2);
-//                TextView merk = v.findViewById(R.id.merk2);
-//                TextView tipe = v.findViewById(R.id.tipe2);
-//                TextView warna = v.findViewById(R.id.warna2);
-//                TextView jumlah = v.findViewById(R.id.jumlah3);
-//                ImageView qrcode = v.findViewById(R.id.qrcode);
-//
-//                ProfileBarang profileBarang = (ProfileBarang) model;
-//                Picasso.get().load(profileBarang.getProfilepicturebarang()).into(imageView);
-//                //Picasso.with(Home.this).load(profileBarang.getProfilepicturebarang().toString()).into(imageView);
-//                nama.setText(profileBarang.getNama());
-//                merk.setText(profileBarang.getMerk());
-//                tipe.setText(profileBarang.getTipe());
-//                warna.setText(profileBarang.getWarna());
-//                jumlah.setText(profileBarang.getJumlah());
-//                Picasso.get().load(profileBarang.getQrcodeurl()).into(qrcode);
-//                System.out.println("getqrcode"+profileBarang.getQrcodeurl());
-//                list.add(profileBarang);
-//
-//            }
-//        };
-//        adapter1.startListening();
         listView.setAdapter(adapter1);
-
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Intent UpdateDelete = new Intent(HalamanBarang.this, EditHapusBarang.class);
-//                ProfileBarang p = (ProfileBarang) adapterView.getItemAtPosition(i);
-//                UpdateDelete.putExtra("nama", p.getNama());
-//                UpdateDelete.putExtra("merk", p.getMerk());
-//                UpdateDelete.putExtra("tipe", p.getTipe());
-//                UpdateDelete.putExtra("warna", p.getWarna());
-//                UpdateDelete.putExtra("jumlah", p.getJumlah());
-//                startActivity(UpdateDelete);
-//            }
-//        });
-
         TextNamaToko.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
