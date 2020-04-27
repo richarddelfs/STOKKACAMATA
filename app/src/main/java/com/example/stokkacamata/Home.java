@@ -134,7 +134,7 @@ public class Home extends AppCompatActivity {
 
     public void setupdata(){
         list.clear();
-        mDatabase.child("ProfileBarang").addValueEventListener(new ValueEventListener() {
+        mDatabase.child("ProfileBarang").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot child : dataSnapshot.getChildren()){

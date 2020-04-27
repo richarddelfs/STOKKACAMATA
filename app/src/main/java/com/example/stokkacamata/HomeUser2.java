@@ -76,7 +76,7 @@ public class HomeUser2 extends AppCompatActivity {
         imageView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent home = new Intent(HomeUser2.this, Barang.class);
+                Intent home = new Intent(HomeUser2.this, BarangUser2.class);
                 startActivity(home);
             }
         });
@@ -138,13 +138,14 @@ public class HomeUser2 extends AppCompatActivity {
 
     public void setupdata(){
         list.clear();
-        mDatabase.child("ProfileBarang").addValueEventListener(new ValueEventListener() {
+        mDatabase.child("ProfileBarang").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot child : dataSnapshot.getChildren()){
                     ProfileBarang profileBarang = child.getValue(ProfileBarang.class);
                     list.add(profileBarang);
                 }
+                System.out.println(list.size());
                 productAdapter.list = list;
                 productAdapter.notifyDataSetChanged();
             }

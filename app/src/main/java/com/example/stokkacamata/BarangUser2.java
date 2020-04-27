@@ -178,8 +178,8 @@ public class BarangUser2 extends AppCompatActivity {
 //                    }
 //                });
                 Toast.makeText(BarangUser2.this, "Data Barang telah berhasil masuk", Toast.LENGTH_LONG).show();
-                Intent barang = new Intent(BarangUser2.this, HomeUser2.class);
-                startActivity(barang);
+//                Intent barang = new Intent(BarangUser2.this, HomeUser2.class);
+//                startActivity(barang);
                 finish();
                 /*
                 ref.addValueEventListener(new ValueEventListener() {
