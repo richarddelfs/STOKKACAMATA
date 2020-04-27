@@ -92,16 +92,23 @@ public class AdapterClassBarang extends RecyclerView.Adapter<AdapterClassBarang.
             super(view);
             barangImageView = itemView.findViewById(R.id.profilebarang1);
             qrCodeImageView = itemView.findViewById(R.id.qrcode);
-            namabarang = itemView.findViewById(R.id.namabarang1);
-            merk = itemView.findViewById(R.id.merk4);
-            tipe = itemView.findViewById(R.id.tipe3);
-            warna = itemView.findViewById(R.id.warna3);
-            jumlah = itemView.findViewById(R.id.jumlah4);
+            namabarang = itemView.findViewById(R.id.tv_product_name);
+            merk = itemView.findViewById(R.id.tv_product_brand);
+            tipe = itemView.findViewById(R.id.tv_product_type);
+            warna = itemView.findViewById(R.id.tv_product_color);
+            jumlah = itemView.findViewById(R.id.tv_product_quantity);
         }
 
         void onBindContent(ProfileBarang profileBarang){
-            Picasso.get().load(profileBarang.getProfilepicturebarang()).into(barangImageView);
-            Picasso.get().load(profileBarang.getQrcodeurl()).into(qrCodeImageView);
+
+            if (!profileBarang.getProfilepicturebarang().isEmpty()){
+                Picasso.get().load(profileBarang.getProfilepicturebarang()).into(barangImageView);
+            }
+
+            if (!profileBarang.getProfilepicturebarang().isEmpty()){
+                Picasso.get().load(profileBarang.getQrcodeurl()).into(qrCodeImageView);
+            }
+
             namabarang.setText(profileBarang.getNama());
             merk.setText(profileBarang.getMerk());
             tipe.setText(profileBarang.getTipe());

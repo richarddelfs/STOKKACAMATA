@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/namabarang2"
+        android:id="@+id/tv_product_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/nama1"
@@ -27,7 +27,7 @@
         app:layout_constraintTop_toBottomOf="@+id/profilebarang1" />
 
     <TextView
-        android:id="@+id/merk2"
+        android:id="@+id/tv_product_brand"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/merk"
@@ -35,10 +35,10 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/namabarang2" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_product_name" />
 
     <TextView
-        android:id="@+id/tipe2"
+        android:id="@+id/tv_product_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/tipe"
@@ -46,10 +46,10 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/merk2" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_product_brand" />
 
     <TextView
-        android:id="@+id/warna2"
+        android:id="@+id/tv_product_color"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/warna"
@@ -57,10 +57,10 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tipe2" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_product_type" />
 
     <TextView
-        android:id="@+id/jumlah3"
+        android:id="@+id/tv_product_quantity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/jumlah"
@@ -68,7 +68,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/warna2" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_product_color" />
 
     <ImageView
         android:id="@+id/qrcode"
@@ -77,6 +77,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jumlah3" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_product_quantity" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

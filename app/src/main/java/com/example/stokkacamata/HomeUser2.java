@@ -54,11 +54,11 @@ public class HomeUser2 extends AppCompatActivity {
             @Override
             protected void populateView(View v, Object model, int position) {
                 ImageView imageView = v.findViewById(R.id.profilebarang1);
-                TextView nama = v.findViewById(R.id.namabarang2);
-                TextView merk = v.findViewById(R.id.merk2);
-                TextView tipe = v.findViewById(R.id.tipe2);
-                TextView warna = v.findViewById(R.id.warna2);
-                TextView jumlah = v.findViewById(R.id.jumlah3);
+                TextView nama = v.findViewById(R.id.tv_product_name);
+                TextView merk = v.findViewById(R.id.tv_product_brand);
+                TextView tipe = v.findViewById(R.id.tv_product_type);
+                TextView warna = v.findViewById(R.id.tv_product_color);
+                TextView jumlah = v.findViewById(R.id.tv_product_quantity);
                 ImageView qrcode = v.findViewById(R.id.qrcode);
 
                 ProfileBarang profileBarang = (ProfileBarang) model;

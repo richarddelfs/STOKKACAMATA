@@ -41,6 +41,7 @@ public class HalamanPegawai extends AppCompatActivity {
         setContentView(R.layout.activity_halaman_pegawai);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
         imageView1 = findViewById(R.id.imageView1);
         imageView1.setOnClickListener(new View.OnClickListener() {
             @Override

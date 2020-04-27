@@ -344,7 +344,6 @@ public class HalamanBarang extends AppCompatActivity {
         //ref = FirebaseDatabase.getInstance().getReference().child("ProfileBarang");
 
         listView = findViewById(R.id.listview3);
-        setupdata();
         adapter1 = new AdapterClassBarang();
         listView.setHasFixedSize(true);
 
@@ -352,6 +351,10 @@ public class HalamanBarang extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         listView.setLayoutManager(layoutManager);
         listView.setAdapter(adapter1);
+
+        setupdata();
+
+
         TextNamaToko.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
