@@ -1,41 +1,46 @@
 package com.example.stokkacamata;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-import com.firebase.ui.database.FirebaseListAdapter;
+
 import com.firebase.ui.database.FirebaseListOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.squareup.picasso.Picasso;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 public class HalamanPegawai extends AppCompatActivity {
 
-    ListView listView;
+    RecyclerView employeeList;
     FirebaseDatabase database;
     DatabaseReference ref;
-    ArrayList<String> list;
+    ArrayList<ProfilePegawai> list = new ArrayList<>();
     ArrayAdapter<String> adapter;
-    //ProfilePegawai profilePegawai1;
-    FirebaseListAdapter adapter1;
+    PegawaiAdapter employeeAdapter;
     FloatingActionButton imageView1;
     Context context;
-    //ImageView profilepegawai;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_halaman_pegawai);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         imageView1 = findViewById(R.id.imageView1);
         //profilePegawai = findViewById(R.id.profilepegawai);
@@ -49,55 +54,63 @@ public class HalamanPegawai extends AppCompatActivity {
         });
 
         //Cara2
-        listView = findViewById(R.id.listview1);
+        employeeList = findViewById(R.id.rv_employee);
         Query query = FirebaseDatabase.getInstance().getReference().child("ProfilePegawai");
         FirebaseListOptions<ProfilePegawai> options = new FirebaseListOptions.Builder<ProfilePegawai>()
                 .setLayout(R.layout.pegawai_info)
                 .setQuery(query, ProfilePegawai.class)
                 .build();
 
-        adapter1 = new FirebaseListAdapter(options) {
-            @Override
-            protected void populateView(View v, Object model, int position) {
-                ImageView imageView = v.findViewById(R.id.profilepegawai1);
-                TextView nama = v.findViewById(R.id.nama2);
-                TextView alamat = v.findViewById(R.id.alamat4);
-                TextView notelp = v.findViewById(R.id.notelp4);
-                TextView tempatlahir = v.findViewById(R.id.tempatlahir3);
-                TextView tanggallahir = v.findViewById(R.id.tanggallahir3);
-                TextView deskripsi = v.findViewById(R.id.deskripsi9);
-                TextView password = v.findViewById(R.id.password2);
+        employeeAdapter = new PegawaiAdapter();
+        employeeAdapter.delegate = this;
+        employeeList.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        employeeList.setLayoutManager(layoutManager);
+        employeeList.setAdapter(employeeAdapter);
 
-                ProfilePegawai profilePegawai = (ProfilePegawai) model;
-                Picasso.get().load(profilePegawai.getProfilepicturepegawai()).into(imageView);
-                //Picasso.with(HalamanPegawai.this).load(profilePegawai.getProfilepicturepegawai().toString()).into(imageView);
-                nama.setText(profilePegawai.getNama().toString());
-                alamat.setText(profilePegawai.getAlamat().toString());
-                notelp.setText(profilePegawai.getNotelp().toString());
-                tempatlahir.setText(profilePegawai.getTempatlahir().toString());
-                tanggallahir.setText(profilePegawai.getTanggallahir().toString());
-                deskripsi.setText(profilePegawai.getDeskripsi().toString());
-                password.setText(profilePegawai.getPassword().toString());
-            }
-        };
-        adapter1.startListening();
-        listView.setAdapter(adapter1);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent UpdateDelete = new Intent(HalamanPegawai.this, EditHapusPegawai.class);
-                ProfilePegawai p = (ProfilePegawai) adapterView.getItemAtPosition(i);
-                UpdateDelete.putExtra("nama", p.getNama());
-                UpdateDelete.putExtra("alamat", p.getAlamat());
-                UpdateDelete.putExtra("notelp", p.getNotelp());
-                UpdateDelete.putExtra("tempatlahir", p.getTempatlahir());
-                UpdateDelete.putExtra("tanggallahir", p.getTanggallahir());
-                UpdateDelete.putExtra("deskripsi", p.getDeskripsi());
-                UpdateDelete.putExtra("password", p.getPassword());
-                startActivity(UpdateDelete);
-            }
-        });
+//        adapter1 = new FirebaseListAdapter(options) {
+//            @Override
+//            protected void populateView(View v, Object model, int position) {
+//                ImageView imageView = v.findViewById(R.id.iv_employ);
+//                TextView nama = v.findViewById(R.id.tv_employ_name);
+//                TextView alamat = v.findViewById(R.id.tv_employ_address);
+//                TextView notelp = v.findViewById(R.id.tv_employ_phone);
+//                TextView tempatlahir = v.findViewById(R.id.tv_employ_pob);
+//                TextView tanggallahir = v.findViewById(R.id.tv_employ_dob);
+//                TextView deskripsi = v.findViewById(R.id.tv_employ_desc);
+//                TextView password = v.findViewById(R.id.et_employ_password);
+//
+//                ProfilePegawai profilePegawai = (ProfilePegawai) model;
+//                Picasso.get().load(profilePegawai.getProfilepicturepegawai()).into(imageView);
+//                //Picasso.with(HalamanPegawai.this).load(profilePegawai.getProfilepicturepegawai().toString()).into(imageView);
+//                nama.setText(profilePegawai.getNama().toString());
+//                alamat.setText(profilePegawai.getAlamat().toString());
+//                notelp.setText(profilePegawai.getNotelp().toString());
+//                tempatlahir.setText(profilePegawai.getTempatlahir().toString());
+//                tanggallahir.setText(profilePegawai.getTanggallahir().toString());
+//                deskripsi.setText(profilePegawai.getDeskripsi().toString());
+//                password.setText(profilePegawai.getPassword().toString());
+//            }
+//        };
+//        adapter1.startListening();
+//        listView.setAdapter(adapter1);
+
+//        employeeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Intent UpdateDelete = new Intent(HalamanPegawai.this, EditHapusPegawai.class);
+//                ProfilePegawai p = (ProfilePegawai) adapterView.getItemAtPosition(i);
+//                UpdateDelete.putExtra("nama", p.getNama());
+//                UpdateDelete.putExtra("alamat", p.getAlamat());
+//                UpdateDelete.putExtra("notelp", p.getNotelp());
+//                UpdateDelete.putExtra("tempatlahir", p.getTempatlahir());
+//                UpdateDelete.putExtra("tanggallahir", p.getTanggallahir());
+//                UpdateDelete.putExtra("deskripsi", p.getDeskripsi());
+//                UpdateDelete.putExtra("password", p.getPassword());
+//                startActivity(UpdateDelete);
+//            }
+//        });
 
 /*
         //Cara 1
@@ -175,30 +188,32 @@ public class HalamanPegawai extends AppCompatActivity {
             }
         });
 
- */
-    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        //adapter1.startListening();
+ */
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        adapter1.startListening();
+        setupdata();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        adapter1.stopListening();
-    }
+    public void setupdata(){
+        mDatabase.child("ProfilePegawai").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot child : dataSnapshot.getChildren()){
+                    ProfilePegawai profileBarang = child.getValue(ProfilePegawai.class);
+                    list.add(profileBarang);
+                }
+                employeeAdapter.employList = list;
+                employeeAdapter.notifyDataSetChanged();
+            }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        adapter1.stopListening();
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }

@@ -40,8 +40,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logoAplikasi7" />
 
-    <ListView
-        android:id="@+id/listview1"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_employee"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"

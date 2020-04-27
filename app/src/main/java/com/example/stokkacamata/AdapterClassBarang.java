@@ -71,7 +71,7 @@ public class AdapterClassBarang extends RecyclerView.Adapter<AdapterClassBarang.
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_holder, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.barang_info, viewGroup, false);
         return new MyViewHolder(view);
     }
 

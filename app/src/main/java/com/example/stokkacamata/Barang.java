@@ -86,12 +86,10 @@ public class Barang extends AppCompatActivity {
         warna = findViewById(R.id.warna1);
         jumlah = findViewById(R.id.jumlah1);
         Placeholder = findViewById(R.id.Placeholder);
-        //editgenerateqrcode = findViewById(R.id.editgenerateqrcode);
+
         imageViewgenerateqrcode = findViewById(R.id.imageViewgenerateqrcode);
         buttongenerateqrcode = findViewById(R.id.buttongenerateqrcode);
-        //Placeholder1 = findViewById(R.id.Placeholder1);
-        //Placeholder2 = findViewById(R.id.Placeholder2);
-        //Placeholder3 = findViewById(R.id.Placeholder3);
+
         ButtonTambahBarang = findViewById(R.id.ButtonTambahBarang);
         database = FirebaseDatabase.getInstance();
         ref = database.getReference("ProfileBarang");
