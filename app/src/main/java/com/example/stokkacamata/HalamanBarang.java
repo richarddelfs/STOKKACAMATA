@@ -426,9 +426,26 @@ public class HalamanBarang extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                System.out.println("ABC");
                 if(s.length() != 0){
-                    System.out.println(list.size());
+                    ArrayList<ProfileBarang> filteredProductList = new ArrayList<>();
+                    for (ProfileBarang product : list){
+                        if(product.getNama().contains(s)){
+                            filteredProductList.add(product);
+                        }else if(product.getMerk().contains(s)){
+                            filteredProductList.add(product);
+                        }else if(product.getTipe().contains(s)){
+                            filteredProductList.add(product);
+                        }else if(product.getWarna().contains(s)){
+                            filteredProductList.add(product);
+                        }
+                    }
 
+                    adapter1.list = filteredProductList;
+                    adapter1.notifyDataSetChanged();
+                }else{
+                    adapter1.list = list;
+                    adapter1.notifyDataSetChanged();
                 }
             }
 
@@ -438,6 +455,7 @@ public class HalamanBarang extends AppCompatActivity {
             }
         });
     }
+
     public void setupdata(){
         mDatabase.child("ProfileBarang").addValueEventListener(new ValueEventListener() {
             @Override
