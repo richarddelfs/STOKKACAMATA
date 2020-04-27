@@ -171,43 +171,10 @@ public class Barang extends AppCompatActivity {
                     }
                 });
 
-//                final StorageReference storageReference = Qrcode.child("qrcode/"+System.currentTimeMillis());
-//                storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                    @Override
-//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                            @Override
-//                            public void onSuccess(Uri uri) {
-//                                String qrcodeurl = uri.toString();
-//                                System.out.println("qrcodeurl" + qrcodeurl);
-//                                Map<String, Object> data = new HashMap<>();
-//                                data.put("qrcode",qrcodeurl);
-//                                ref.child(profileBarang.getNama()).setValue(data);
-//                            }
-//                        });
-//                    }
-//                });
                 Toast.makeText(Barang.this, "Data Barang telah berhasil masuk", Toast.LENGTH_LONG).show();
                 Intent barang = new Intent(Barang.this, Home.class);
                 startActivity(barang);
                 finish();
-                /*
-                ref.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        getValues();
-                        ref.child(profileBarang.getNama()).setValue(profileBarang);
-                        Toast.makeText(Barang.this, "Data Barang telah berhasil masuk", Toast.LENGTH_LONG).show();
-                        Intent barang = new Intent(Barang.this, Home.class);
-                        startActivity(barang);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Toast.makeText(Barang.this, "Data Barang belum berhasil masuk", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                */
             }
         });
 

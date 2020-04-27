@@ -2,6 +2,8 @@ package com.example.stokkacamata;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,9 +20,15 @@ import com.firebase.ui.database.FirebaseListOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class HomeUser2 extends AppCompatActivity {
     private Button buttoneditpegawai;
@@ -29,66 +37,33 @@ public class HomeUser2 extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private FloatingActionButton imageView1;
-    private ListView listView;
-    private FirebaseListAdapter adapter1;
+    private RecyclerView listView;
+    private AdapterClassBarang productAdapter;
+    private DatabaseReference mDatabase;
+
+    ArrayList<ProfileBarang> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_user2);
 
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_user2);
 //        buttoneditpegawai = findViewById(R.id.buttoneditpegawai);
         btnLogout = findViewById(R.id.btnLogoutuser2);
         imageView1 = findViewById(R.id.imageView1user2);
         TextNamaToko = findViewById(R.id.TextNamaTokouser2);
-
         listView = findViewById(R.id.listview2user2);
-        Query query = FirebaseDatabase.getInstance().getReference().child("ProfileBarang");
-        FirebaseListOptions<ProfileBarang> options = new FirebaseListOptions.Builder<ProfileBarang>()
-                .setLayout(R.layout.barang_info)
-                .setQuery(query, ProfileBarang.class)
-                .build();
 
-        adapter1 = new FirebaseListAdapter(options) {
-            @Override
-            protected void populateView(View v, Object model, int position) {
-                ImageView imageView = v.findViewById(R.id.profilebarang1);
-                TextView nama = v.findViewById(R.id.tv_product_name);
-                TextView merk = v.findViewById(R.id.tv_product_brand);
-                TextView tipe = v.findViewById(R.id.tv_product_type);
-                TextView warna = v.findViewById(R.id.tv_product_color);
-                TextView jumlah = v.findViewById(R.id.tv_product_quantity);
-                ImageView qrcode = v.findViewById(R.id.qrcode);
-
-                ProfileBarang profileBarang = (ProfileBarang) model;
-                Picasso.get().load(profileBarang.getProfilepicturebarang()).into(imageView);
-                //Picasso.with(Home.this).load(profileBarang.getProfilepicturebarang().toString()).into(imageView);
-                nama.setText(profileBarang.getNama());
-                merk.setText(profileBarang.getMerk());
-                tipe.setText(profileBarang.getTipe());
-                warna.setText(profileBarang.getWarna());
-                jumlah.setText(profileBarang.getJumlah());
-                Picasso.get().load(profileBarang.getQrcodeurl()).into(qrcode);
-                System.out.println("getqrcode"+profileBarang.getQrcodeurl());
-            }
-        };
-        adapter1.startListening();
-        listView.setAdapter(adapter1);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent UpdateDelete = new Intent(HomeUser2.this, EditHapusBarang.class);
-                ProfileBarang p = (ProfileBarang) adapterView.getItemAtPosition(i);
-                UpdateDelete.putExtra("nama", p.getNama());
-                UpdateDelete.putExtra("merk", p.getMerk());
-                UpdateDelete.putExtra("tipe", p.getTipe());
-                UpdateDelete.putExtra("warna", p.getWarna());
-                UpdateDelete.putExtra("jumlah", p.getJumlah());
-                startActivity(UpdateDelete);
-            }
-        });
+        /* Setup Adapter */
+        productAdapter = new AdapterClassBarang();
+        productAdapter.delegate = this;
+        listView.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        listView.setLayoutManager(layoutManager);
+        listView.setAdapter(productAdapter);
 
         TextNamaToko.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,67 +131,28 @@ public class HomeUser2 extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        //adapter1.startListening();
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
-        adapter1.startListening();
+        setupdata();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        adapter1.stopListening();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        adapter1.stopListening();
-    }
-/*
-        scan.setOnClickListener(new View.OnClickListener() {
+    public void setupdata(){
+        list.clear();
+        mDatabase.child("ProfileBarang").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                IntentIntegrator intentIntegrator = new IntentIntegrator(Home.this);
-                intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
-                intentIntegrator.setCameraId(0);
-                intentIntegrator.setOrientationLocked(false);
-                intentIntegrator.setPrompt("scanning");
-                intentIntegrator.setBeepEnabled(true);
-                intentIntegrator.setBarcodeImageEnabled(true);
-                intentIntegrator.initiateScan();
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot child : dataSnapshot.getChildren()){
+                    ProfileBarang profileBarang = child.getValue(ProfileBarang.class);
+                    list.add(profileBarang);
+                }
+                productAdapter.list = list;
+                productAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
     }
-
-        @Override
-        protected void onActivityResult ( int requestCode, int resultCode, Intent data){
-            final IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-            if (result != null && result.getContents() != null) {
-
-                new AlertDialog.Builder(Home.this)
-                        .setTitle("TambahTransaksi Result")
-                        .setMessage(result.getContents())
-                        .setPositiveButton("Copy", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                ClipboardManager manager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                                ClipData data = ClipData.newPlainText("result", result.getContents());
-                                manager.setPrimaryClip(data);
-                            }
-                        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                }).create().show();
-            }
-            super.onActivityResult(requestCode, resultCode, data);
-        }
-*/
 }

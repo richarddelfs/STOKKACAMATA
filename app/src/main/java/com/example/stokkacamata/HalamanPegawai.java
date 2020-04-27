@@ -51,7 +51,6 @@ public class HalamanPegawai extends AppCompatActivity {
             }
         });
 
-        //Cara2
         employeeList = findViewById(R.id.rv_employee);
         Query query = FirebaseDatabase.getInstance().getReference().child("ProfilePegawai");
         FirebaseListOptions<ProfilePegawai> options = new FirebaseListOptions.Builder<ProfilePegawai>()
