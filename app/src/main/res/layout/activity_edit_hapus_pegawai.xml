@@ -223,6 +223,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:background="@color/zxing_custom_viewfinder_laser"
+        android:onClick="Update"
         android:text="@string/update"
         android:textColor="@android:color/background_light"
         app:layout_constraintStart_toStartOf="parent"

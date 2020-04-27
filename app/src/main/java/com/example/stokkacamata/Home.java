@@ -129,6 +129,12 @@ public class Home extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setupdata();
+    }
+
     public void setupdata(){
         list.clear();
         mDatabase.child("ProfileBarang").addValueEventListener(new ValueEventListener() {
