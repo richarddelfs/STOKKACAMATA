@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "982671823922",
+    "firebase_url": "https://stok-kacamata-5c64f.firebaseio.com",
+    "project_id": "stok-kacamata-5c64f",
+    "storage_bucket": "stok-kacamata-5c64f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:982671823922:android:dc624eb139ba5e0204182b",
+        "android_client_info": {
+          "package_name": "com.example.stokkacamata"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "982671823922-da2m0b2gd8aoo0jtlupnik0ogho8vnu8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.stokkacamata",
+            "certificate_hash": "7e53a04877efe650564fc8146d5f818b73c8aeeb"
+          }
+        },
+        {
+          "client_id": "982671823922-b9rcljbq1oaalcvcv6jng7dlc6sf2t3d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.stokkacamata",
+            "certificate_hash": "6f71fa510297b7d219263591e0ae9e60cf3385a4"
+          }
+        },
+        {
+          "client_id": "982671823922-e1stfirvhrqpj5lu9450vod36qc0mnp8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0fCSeZhrwr5PTc6SvMAWV46DwtjpeiZo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "982671823922-e1stfirvhrqpj5lu9450vod36qc0mnp8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

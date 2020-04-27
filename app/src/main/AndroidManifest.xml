@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.stokkacamata">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature android:name="com.android.hardware.Camera.focus" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/tampilan"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/tampilan"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:ignore="UnusedAttribute">
+        <activity android:name=".LoginPegawai"></activity>
+        <activity android:name=".SearchUser2" />
+        <activity android:name=".ScanUser2" />
+        <activity android:name=".BarangUser2" />
+        <activity android:name=".TransaksiUser2" />
+        <activity android:name=".HalamanBarangUser2" />
+        <activity android:name=".HomeUser2" />
+        <activity android:name=".Search" />
+        <activity android:name=".PilihToko" />
+        <activity android:name=".EditHapusToko" />
+        <activity android:name=".EditHapusBarang" />
+        <activity android:name=".EditHapusPegawai" />
+        <activity android:name=".HalamanPegawai" />
+        <activity android:name=".DataToko" />
+        <activity android:name=".HalamanToko" />
+        <activity android:name=".Scan" />
+        <activity android:name=".Registration" />
+        <activity android:name=".DataPegawai" />
+        <activity android:name=".History" />
+        <activity android:name=".Barang" />
+        <activity android:name=".Transaksi" />
+        <activity android:name=".HalamanBarang" />
+        <activity android:name=".Home" />
+        <activity android:name=".Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            tools:replace="screenOrientation" />
+    </application>
+
+</manifest>
