@@ -168,6 +168,7 @@ public class Scan extends AppCompatActivity {
             }
         });
 
+
         options = new FirebaseVisionBarcodeDetectorOptions.Builder()
                 .setBarcodeFormats(FirebaseVisionBarcode.FORMAT_QR_CODE)
                 .build();
@@ -214,8 +215,9 @@ public class Scan extends AppCompatActivity {
                             firebaseVisionBarcodes.clear();
                             isDetected = false;
                             detector.close();
+                            cameraView.clearFrameProcessors();
                             startActivity(intent);
-                            finish();
+
                         }catch(IOException error){
                             System.out.println("DETECTOR NOT CLOSED");
                         }
