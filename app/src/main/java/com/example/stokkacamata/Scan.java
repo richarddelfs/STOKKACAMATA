@@ -50,7 +50,6 @@ public class Scan extends AppCompatActivity {
     Button btn_start_again;
     FirebaseVisionBarcodeDetectorOptions options;
     FirebaseVisionBarcodeDetector detector;
-    FrameProcessor frameProcessor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,14 +152,12 @@ public class Scan extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-//        new FrameProcessor
-        frameProcessor = new FrameProcessor(){
+        cameraView.addFrameProcessor(new FrameProcessor() {
             @Override
             public void process(@NonNull Frame frame) {
                 processImage(getVisionImageFromFrame(frame));
             }
-        };
-        cameraView.addFrameProcessor(frameProcessor);
+        });
     }
 
     private void setupCamera() {
@@ -214,22 +211,13 @@ public class Scan extends AppCompatActivity {
                 {
                     case FirebaseVisionBarcode.TYPE_TEXT:
                     {
-                        try {
-                            Intent intent = new Intent(Scan.this, EditHapusBarang.class);
-                            intent.putExtra("nama", item.getRawValue());
-                            intent.putExtra("status", status);
-                            intent.putExtra("from", "scan");
-                            firebaseVisionBarcodes.clear();
-                            isDetected = false;
-                            cameraView.close();
-                            detector.close();
-                            cameraView.removeFrameProcessor(frameProcessor);
-                            startActivity(intent);
-
-                        }catch(IOException error){
-                            System.out.println("DETECTOR NOT CLOSED");
-                        }
-
+                        Intent intent = new Intent(Scan.this, EditHapusBarang.class);
+                        intent.putExtra("nama", item.getRawValue());
+                        intent.putExtra("status", status);
+                        intent.putExtra("from", "scan");
+                        intent.putExtra("source", "PEMILIK");
+                        startActivity(intent);
+                        finish();
                     }
                     break;
                     case FirebaseVisionBarcode.TYPE_URL:

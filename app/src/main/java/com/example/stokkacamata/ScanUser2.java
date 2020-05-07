@@ -200,7 +200,9 @@ public class ScanUser2 extends AppCompatActivity {
                         intent.putExtra("nama", item.getRawValue());
                         intent.putExtra("status", status);
                         intent.putExtra("from", "scan");
+                        intent.putExtra("source", "PEGAWAI");
                         startActivity(intent);
+                        finish();
                     }
                     break;
                     case FirebaseVisionBarcode.TYPE_URL:
