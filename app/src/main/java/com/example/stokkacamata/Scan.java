@@ -149,6 +149,17 @@ public class Scan extends AppCompatActivity {
         */
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        cameraView.addFrameProcessor(new FrameProcessor() {
+            @Override
+            public void process(@NonNull Frame frame) {
+                processImage(getVisionImageFromFrame(frame));
+            }
+        });
+    }
+
     private void setupCamera() {
         btn_start_again = findViewById(R.id.btn_again);
         btn_start_again.setEnabled(isDetected);
@@ -161,13 +172,6 @@ public class Scan extends AppCompatActivity {
 
         cameraView = findViewById(R.id.cameraView);
         cameraView.setLifecycleOwner(this);
-        cameraView.addFrameProcessor(new FrameProcessor() {
-            @Override
-            public void process(@NonNull Frame frame) {
-                processImage(getVisionImageFromFrame(frame));
-            }
-        });
-
 
         options = new FirebaseVisionBarcodeDetectorOptions.Builder()
                 .setBarcodeFormats(FirebaseVisionBarcode.FORMAT_QR_CODE)
