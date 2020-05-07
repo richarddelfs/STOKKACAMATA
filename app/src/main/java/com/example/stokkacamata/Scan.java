@@ -208,6 +208,7 @@ public class Scan extends AppCompatActivity {
                         intent.putExtra("nama", item.getRawValue());
                         intent.putExtra("status", status);
                         intent.putExtra("from", "scan");
+                        firebaseVisionBarcodes.clear();
                         isDetected = false;
                         startActivity(intent);
                     }
