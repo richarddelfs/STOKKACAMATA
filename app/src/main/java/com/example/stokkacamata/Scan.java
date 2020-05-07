@@ -97,7 +97,6 @@ public class Scan extends AppCompatActivity {
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
-                        System.out.println("TEST");
                         setupCamera();
                     }
 
@@ -176,6 +175,8 @@ public class Scan extends AppCompatActivity {
     }
 
     private void processImage(FirebaseVisionImage image) {
+        System.out.println("TEST");
+
         if(isDetected)
         {
             detector.detectInImage(image)
