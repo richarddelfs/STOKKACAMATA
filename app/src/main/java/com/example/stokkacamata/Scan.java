@@ -46,7 +46,7 @@ public class Scan extends AppCompatActivity {
     private ImageView scan;
     String status = "pemilik";
     CameraView cameraView;
-    boolean isDetected = false;
+    boolean isDetected = true;
     Button btn_start_again;
     FirebaseVisionBarcodeDetectorOptions options;
     FirebaseVisionBarcodeDetector detector;
