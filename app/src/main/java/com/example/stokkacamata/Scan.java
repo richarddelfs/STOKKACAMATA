@@ -148,12 +148,6 @@ public class Scan extends AppCompatActivity {
         */
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        System.out.println("TEST");
-    }
-
     private void setupCamera() {
         btn_start_again = findViewById(R.id.btn_again);
         btn_start_again.setEnabled(isDetected);
@@ -210,6 +204,7 @@ public class Scan extends AppCompatActivity {
                 {
                     case FirebaseVisionBarcode.TYPE_TEXT:
                     {
+                        System.out.println("TEST");
                         Intent intent = new Intent(Scan.this, EditHapusBarang.class);
                         intent.putExtra("nama", item.getRawValue());
                         intent.putExtra("status", status);
