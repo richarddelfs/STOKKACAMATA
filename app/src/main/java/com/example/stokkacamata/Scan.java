@@ -218,6 +218,7 @@ public class Scan extends AppCompatActivity {
                             intent.putExtra("from", "scan");
                             firebaseVisionBarcodes.clear();
                             isDetected = false;
+                            cameraView.close();
                             detector.close();
                             cameraView.clearFrameProcessors();
                             startActivity(intent);
