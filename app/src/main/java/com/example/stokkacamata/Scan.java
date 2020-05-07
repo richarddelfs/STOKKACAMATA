@@ -197,8 +197,7 @@ public class Scan extends AppCompatActivity {
     private void processResult(List<FirebaseVisionBarcode> firebaseVisionBarcodes) {
         if(firebaseVisionBarcodes.size() > 0)
         {
-            isDetected = true;
-            btn_start_again.setEnabled(isDetected);
+            btn_start_again.setEnabled(true);
             for(FirebaseVisionBarcode item: firebaseVisionBarcodes)
             {
                 int value_type = item.getValueType();
