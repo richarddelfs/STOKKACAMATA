@@ -204,11 +204,11 @@ public class Scan extends AppCompatActivity {
                 {
                     case FirebaseVisionBarcode.TYPE_TEXT:
                     {
-                        System.out.println("TEST");
                         Intent intent = new Intent(Scan.this, EditHapusBarang.class);
                         intent.putExtra("nama", item.getRawValue());
                         intent.putExtra("status", status);
                         intent.putExtra("from", "scan");
+                        isDetected = false;
                         startActivity(intent);
                     }
                     break;
