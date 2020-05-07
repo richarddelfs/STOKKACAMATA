@@ -32,7 +32,7 @@ public class EditHapusBarang extends AppCompatActivity {
         warna = findViewById(R.id.warna);
         jumlah = findViewById(R.id.jumlah2);
         key10 = findViewById(R.id.key1);
-        //        qrcode = findViewById(R.id.qrcode);
+
         String key = getIntent().getExtras().get("nama").toString();
         ref = FirebaseDatabase.getInstance().getReference().child("ProfileBarang").child(key);
         key10.setText(key);
@@ -40,7 +40,6 @@ public class EditHapusBarang extends AppCompatActivity {
         tipe.setText(getIntent().getStringExtra("tipe"));
         warna.setText(getIntent().getStringExtra("warna"));
         jumlah.setText(getIntent().getStringExtra("jumlah"));
-//        qrcode.setText();
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
