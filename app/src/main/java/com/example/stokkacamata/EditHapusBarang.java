@@ -98,46 +98,35 @@ public class EditHapusBarang extends AppCompatActivity {
 
     public void Update(View view)
     {
-//        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                dataSnapshot.getRef().child("merk").setValue(merk.getText().toString());
-//                dataSnapshot.getRef().child("tipe").setValue(tipe.getText().toString());
-//                dataSnapshot.getRef().child("warna").setValue(warna.getText().toString());
-//                dataSnapshot.getRef().child("jumlah").setValue(jumlah.getText().toString());
-//                Toast.makeText(EditHapusBarang.this, "Data Barang telah berhasil diupdate", Toast.LENGTH_LONG).show();
-////                Intent intent = new Intent(EditHapusBarang.this, Scan.class);
-////                startActivity(intent);
-//                finish();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//                Toast.makeText(EditHapusBarang.this, "Data Barang belum berhasil diupdate", Toast.LENGTH_LONG).show();
-//            }
-//        });
-        ProfileBarang profileBarang = new ProfileBarang();
-        profileBarang.setMerk(merk.getText().toString());
-        profileBarang.setTipe(tipe.getText().toString());
-        profileBarang.setWarna(warna.getText().toString());
-        profileBarang.setJumlah(jumlah.getText().toString());
-
-        ref.setValue(profileBarang).addOnSuccessListener(new OnSuccessListener<Void>() {
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(EditHapusBarang.this, "Data Barang telah berhasil diupdate", Toast.LENGTH_LONG).show();
-                finish();
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ProfileBarang profileBarang = dataSnapshot.getValue(ProfileBarang.class);
+                profileBarang.setMerk(merk.getText().toString());
+                profileBarang.setTipe(tipe.getText().toString());
+                profileBarang.setWarna(warna.getText().toString());
+                profileBarang.setJumlah(jumlah.getText().toString());
+
+                ref.setValue(profileBarang).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(EditHapusBarang.this, "Data Barang telah berhasil diupdate", Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(EditHapusBarang.this, "Data Barang belum berhasil diupdate", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
 
-        }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onFailure(@NonNull Exception e) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(EditHapusBarang.this, "Data Barang belum berhasil diupdate", Toast.LENGTH_LONG).show();
             }
-        })
-        ;
-
-
+        });
     }
 
 
