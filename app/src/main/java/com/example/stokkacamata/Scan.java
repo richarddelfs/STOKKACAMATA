@@ -179,7 +179,6 @@ public class Scan extends AppCompatActivity {
 
         if(isDetected)
         {
-            System.out.println("TEST");
             detector.detectInImage(image)
                     .addOnSuccessListener(new OnSuccessListener<List<FirebaseVisionBarcode>>() {
                         @Override
@@ -216,6 +215,7 @@ public class Scan extends AppCompatActivity {
                             isDetected = false;
                             detector.close();
                             startActivity(intent);
+                            finish();
                         }catch(IOException error){
                             System.out.println("DETECTOR NOT CLOSED");
                         }

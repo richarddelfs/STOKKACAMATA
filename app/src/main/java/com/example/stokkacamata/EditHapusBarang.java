@@ -111,7 +111,11 @@ public class EditHapusBarang extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(EditHapusBarang.this, "Data Barang telah berhasil diupdate", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(EditHapusBarang.this, Scan.class);
+//                        EditHapusBarang.this.getIntent(intent);
+                        startActivity(intent);
                         finish();
+//                        finish();
                     }
 
                 }).addOnFailureListener(new OnFailureListener() {
