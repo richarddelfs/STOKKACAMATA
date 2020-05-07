@@ -175,7 +175,7 @@ public class Scan extends AppCompatActivity {
     }
 
     private void processImage(FirebaseVisionImage image) {
-        if(!isDetected)
+        if(isDetected)
         {
             detector.detectInImage(image)
                     .addOnSuccessListener(new OnSuccessListener<List<FirebaseVisionBarcode>>() {
@@ -212,6 +212,7 @@ public class Scan extends AppCompatActivity {
                             intent.putExtra("status", status);
                             intent.putExtra("from", "scan");
                             firebaseVisionBarcodes.clear();
+                            isDetected = false;
                             detector.close();
                             startActivity(intent);
                         }catch(IOException error){
