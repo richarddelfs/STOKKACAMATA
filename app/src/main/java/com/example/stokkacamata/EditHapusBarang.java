@@ -2,6 +2,8 @@ package com.example.stokkacamata;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -55,6 +57,42 @@ public class EditHapusBarang extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if(getIntent().getStringExtra("status").equals("pegawai")){
+            if(getIntent().getStringExtra("from").equals("homeuser2")){
+                Intent intent = new Intent(EditHapusBarang.this, HomeUser2.class);
+                startActivity(intent);
+            }
+            else if(getIntent().getStringExtra("from").equals("halamanbaranguser2")) {
+                Intent intent = new Intent(EditHapusBarang.this, HalamanBarangUser2.class);
+                startActivity(intent);
+            }
+            else{
+                Intent intent = new Intent(EditHapusBarang.this, ScanUser2.class);
+                startActivity(intent);
+            }
+
+        }
+        else if (getIntent().getStringExtra("status").equals("pemilik")) {
+            if (getIntent().getStringExtra("from").equals("home")) {
+                Intent intent = new Intent(EditHapusBarang.this, Home.class);
+                startActivity(intent);
+            }
+            else if (getIntent().getStringExtra("from").equals("halamanbarang")) {
+                Intent intent = new Intent(EditHapusBarang.this, HalamanBarang.class);
+                startActivity(intent);
+            }
+            else {
+                Intent intent = new Intent(EditHapusBarang.this, Scan.class);
+                startActivity(intent);
+            }
+            finish();
+        }
+
+    }
+
     public void Update(View view)
     {
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -65,7 +103,9 @@ public class EditHapusBarang extends AppCompatActivity {
                 dataSnapshot.getRef().child("warna").setValue(warna.getText().toString());
                 dataSnapshot.getRef().child("jumlah").setValue(jumlah.getText().toString());
                 Toast.makeText(EditHapusBarang.this, "Data Barang telah berhasil diupdate", Toast.LENGTH_LONG).show();
-                EditHapusBarang.this.finish();
+//                Intent intent = new Intent(EditHapusBarang.this, Scan.class);
+//                startActivity(intent);
+                finish();
             }
 
             @Override
@@ -73,7 +113,9 @@ public class EditHapusBarang extends AppCompatActivity {
                 Toast.makeText(EditHapusBarang.this, "Data Barang belum berhasil diupdate", Toast.LENGTH_LONG).show();
             }
         });
+
     }
+
 
     public void Delete(View view)
     {
