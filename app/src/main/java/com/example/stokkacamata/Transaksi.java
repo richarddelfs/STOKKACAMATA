@@ -116,20 +116,24 @@ public class Transaksi extends AppCompatActivity {
                 switch (menuItem.getItemId()){
                     case R.id.nav_home:
                         startActivity(new Intent(getApplicationContext(), Home.class));
+                        finish();
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_databarang:
                         startActivity(new Intent(getApplicationContext(), HalamanBarang.class));
+                        finish();
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_scan:
                         startActivity(new Intent(getApplicationContext(), Scan.class));
+                        finish();
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_transaksi:
                         return true;
                     case R.id.nav_history:
                         startActivity(new Intent(getApplicationContext(), History.class));
+                        finish();
                         overridePendingTransition(0,0);
                         return true;
                 }
@@ -196,6 +200,12 @@ public class Transaksi extends AppCompatActivity {
             }
 
         }
+    }
+
+    public void onBackPressed(){
+        Intent intent = new Intent(Transaksi.this, Home.class);
+        startActivity(intent);
+        finish();
     }
 
     private void getValues()

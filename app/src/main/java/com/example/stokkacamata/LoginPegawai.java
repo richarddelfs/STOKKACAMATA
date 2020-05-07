@@ -42,13 +42,30 @@ public class LoginPegawai extends AppCompatActivity {
         loginpegawai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                databaseReference.child(nama.getText().toString()).addValueEventListener(new ValueEventListener() {
+                databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        ProfilePegawai pegawai = dataSnapshot.getValue(ProfilePegawai.class);
-                        if (password.getText().toString().equals(pegawai.getPassword())) {
-                            login();
-                        } else {
+                        if (dataSnapshot.hasChild(nama.getText().toString())){
+                            databaseReference.child(nama.getText().toString()).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    ProfilePegawai pegawai = dataSnapshot.getValue(ProfilePegawai.class);
+                                if (password.getText().toString().equals(pegawai.getPassword())) {
+                                    Login.activitylogin.finish();
+                                        login();
+                                 }
+                                else {
+                                        failed();
+                                }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                        }
+                        else{
                             failed();
                         }
                     }
@@ -63,12 +80,12 @@ public class LoginPegawai extends AppCompatActivity {
         });
 
 
-
     }
 
     private void login(){
         Intent intent = new Intent(this, HomeUser2.class);
         startActivity(intent);
+        finish();
     }
 
     private void failed(){

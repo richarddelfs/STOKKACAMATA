@@ -2,8 +2,12 @@ package com.example.stokkacamata;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,9 +20,15 @@ import com.firebase.ui.database.FirebaseListOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import org.w3c.dom.ls.LSOutput;
+import java.util.ArrayList;
 
 public class HalamanBarangUser2 extends AppCompatActivity {
     private ImageView btnLogout5;
@@ -26,11 +36,12 @@ public class HalamanBarangUser2 extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private FloatingActionButton imageView1;
     private TextView TextNamaToko;
-    private ListView listView;
-    private FirebaseListAdapter adapter1;
-    private SearchView searchView;
+    private RecyclerView listView;
+    private AdapterClassBarang adapter1;
+    private TextView textView;
+    private DatabaseReference mDatabase;
     //DatabaseReference ref;
-    //ArrayList<ProfileBarang> list;
+    ArrayList<ProfileBarang> list = new ArrayList<ProfileBarang>();
     //RecyclerView recyclerView;
 
 /*
@@ -42,61 +53,32 @@ public class HalamanBarangUser2 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_halaman_barang_user2);
         btnLogout5 = findViewById(R.id.btnLogout5user2);
         imageView1 = findViewById(R.id.imageView1user2);
         TextNamaToko = findViewById(R.id.TextNamaTokouser2);
-        searchView = findViewById(R.id.searchView1user2);
+        textView = findViewById(R.id.searchtext1user2);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
         //recyclerView = findViewById(R.id.recyclerview2);
         //ref = FirebaseDatabase.getInstance().getReference().child("ProfileBarang");
 
         listView = findViewById(R.id.listview3user2);
-        Query query = FirebaseDatabase.getInstance().getReference().child("ProfileBarang");
-        FirebaseListOptions<ProfileBarang> options = new FirebaseListOptions.Builder<ProfileBarang>()
-                .setLayout(R.layout.barang_info)
-                .setQuery(query, ProfileBarang.class)
-                .build();
 
-        adapter1 = new FirebaseListAdapter(options) {
-            @Override
-            protected void populateView(View v, Object model, int position) {
-                ImageView imageView = v.findViewById(R.id.profilebarang1);
-                TextView nama = v.findViewById(R.id.tv_product_name);
-                TextView merk = v.findViewById(R.id.tv_product_brand);
-                TextView tipe = v.findViewById(R.id.tv_product_type);
-                TextView warna = v.findViewById(R.id.tv_product_color);
-                TextView jumlah = v.findViewById(R.id.tv_product_quantity);
-                ImageView qrcode = v.findViewById(R.id.qrcode);
-
-                ProfileBarang profileBarang = (ProfileBarang) model;
-                Picasso.get().load(profileBarang.getProfilepicturebarang()).into(imageView);
-                //Picasso.with(Home.this).load(profileBarang.getProfilepicturebarang().toString()).into(imageView);
-                nama.setText(profileBarang.getNama());
-                merk.setText(profileBarang.getMerk());
-                tipe.setText(profileBarang.getTipe());
-                warna.setText(profileBarang.getWarna());
-                jumlah.setText(profileBarang.getJumlah());
-                Picasso.get().load(profileBarang.getQrcodeurl()).into(qrcode);
-                System.out.println("getqrcode"+profileBarang.getQrcodeurl());
-            }
-        };
-        adapter1.startListening();
+        /* Setup RecyclerView */
+        adapter1 = new AdapterClassBarang();
+        adapter1.delegate = this;
+        listView.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        listView.setLayoutManager(layoutManager);
+        adapter1.status = "pegawai";
+        adapter1.from = "halamanbaranguser2";
         listView.setAdapter(adapter1);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent UpdateDelete = new Intent(HalamanBarangUser2.this, EditHapusBarang.class);
-                ProfileBarang p = (ProfileBarang) adapterView.getItemAtPosition(i);
-                UpdateDelete.putExtra("nama", p.getNama());
-                UpdateDelete.putExtra("merk", p.getMerk());
-                UpdateDelete.putExtra("tipe", p.getTipe());
-                UpdateDelete.putExtra("warna", p.getWarna());
-                UpdateDelete.putExtra("jumlah", p.getJumlah());
-                startActivity(UpdateDelete);
-            }
-        });
+        setupdata();
+
 
         TextNamaToko.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,13 +96,6 @@ public class HalamanBarangUser2 extends AppCompatActivity {
             }
         });
 
-        searchView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent searchbarang = new Intent(HalamanBarangUser2.this, SearchUser2.class);
-                startActivity(searchbarang);
-            }
-        });
 
         //Initialize And Assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_user2);
@@ -135,28 +110,30 @@ public class HalamanBarangUser2 extends AppCompatActivity {
                 switch (menuItem.getItemId()){
                     case R.id.nav_home:
                         startActivity(new Intent(getApplicationContext(), HomeUser2.class));
+                        finish();
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_databarang:
                         return true;
                     case R.id.nav_scan:
                         startActivity(new Intent(getApplicationContext(), ScanUser2.class));
+                        finish();
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_transaksi:
                         startActivity(new Intent(getApplicationContext(), TransaksiUser2.class));
+                        finish();
                         overridePendingTransition(0,0);
                         return true;
-                        /*
-                    case R.id.nav_history:
-                        startActivity(new Intent(getApplicationContext(), History.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                        */
+//                    case R.id.nav_history:
+//                        startActivity(new Intent(getApplicationContext(), History.class));
+//                        overridePendingTransition(0,0);
+//                        return true;
                 }
                 return false;
             }
         });
+
 
         btnLogout5.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,87 +144,72 @@ public class HalamanBarangUser2 extends AppCompatActivity {
             }
         });
 
-        /*
-            if (ref != null) {
-            ref.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        list = new ArrayList<>();
-                        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                            list.add(dataSnapshot1.getValue(ProfileBarang.class));
+
+    }
+    public void onBackPressed(){
+        Intent intent = new Intent(HalamanBarangUser2.this, HomeUser2.class);
+        startActivity(intent);
+        finish();
+    }
+    public void setupsearch(){
+        textView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length() != 0){
+                    ArrayList<ProfileBarang> filteredProductList = new ArrayList<>();
+                    for (ProfileBarang product : list){
+                        if(product.getNama().contains(s)){
+                            filteredProductList.add(product);
+                        }else if(product.getMerk().contains(s)){
+                            filteredProductList.add(product);
+                        }else if(product.getTipe().contains(s)){
+                            filteredProductList.add(product);
+                        }else if(product.getWarna().contains(s)){
+                            filteredProductList.add(product);
                         }
-                        AdapterClassBarang adapterClassBarang = new AdapterClassBarang(list);
-//                        AdapterClassBarang.MyViewHolder();
-                        recyclerView.setAdapter(adapterClassBarang);
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toast.makeText(HalamanBarang.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                    adapter1.list = filteredProductList;
+                    adapter1.notifyDataSetChanged();
+                }else{
+                    adapter1.list = list;
+                    adapter1.notifyDataSetChanged();
                 }
-            });
-        }
+            }
 
-            if (searchView != null) {
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String s) {
-                    //search(s);
-                    return false;
-                }
+            @Override
+            public void afterTextChanged(Editable s) {
 
-                @Override
-                public boolean onQueryTextChange(String s) {
-                    search(s);
-                    return true;
-                }
-            });
-        }
-         */
+            }
+        });
     }
 
-    /*
-    private void search(String string) {
-        ArrayList<ProfileBarang> myList = new ArrayList<>();
-        for (ProfileBarang object : list) {
-            if (object.getNama().toLowerCase().contains(string.toLowerCase())) ;
-            {
-                System.out.println("ayam");
-//                if(object.getTipe().toLowerCase().contains(string.toLowerCase()));
-//                {
-//                    if(object.getWarna().toLowerCase().contains(string.toLowerCase()));
-//                    {
-//                        if(object.getJumlah().toLowerCase().contains(string.toLowerCase()));
-//                        {
-//                            myList.add(object);
-//                        }
-//                    }
-//                }
-                myList.add(object);
+    public void setupdata(){
+        list.clear();
+        mDatabase.child("ProfileBarang").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot child : dataSnapshot.getChildren()){
+                    ProfileBarang profileBarang = child.getValue(ProfileBarang.class);
+                    list.add(profileBarang);
+                }
+                adapter1.list = list;
+                adapter1.notifyDataSetChanged();
+                setupsearch();
             }
 
-            if(object.getMerk().toLowerCase().contains(string.toLowerCase()));
-            {
-                myList.add(object);
-            }
-            if(object.getTipe().toLowerCase().contains(string.toLowerCase()));
-            {
-                myList.add(object);
-            }
-            if(object.getWarna().toLowerCase().contains(string.toLowerCase()));
-            {
-                myList.add(object);
-            }
-            if(object.getJumlah().toLowerCase().contains(string.toLowerCase()));
-            {
-                myList.add(object);
-            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-        }
+            }
+        });
     }
-    */
+
 
     @Override
     protected void onStart() {
@@ -255,21 +217,5 @@ public class HalamanBarangUser2 extends AppCompatActivity {
         //adapter1.startListening();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        adapter1.startListening();
-    }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        adapter1.stopListening();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        adapter1.stopListening();
-    }
 }

@@ -63,6 +63,8 @@ public class HomeUser2 extends AppCompatActivity {
         listView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         listView.setLayoutManager(layoutManager);
+        productAdapter.status = "pegawai";
+        productAdapter.from = "homeuser2";
         listView.setAdapter(productAdapter);
 
         TextNamaToko.setOnClickListener(new View.OnClickListener() {
@@ -128,6 +130,12 @@ public class HomeUser2 extends AppCompatActivity {
             }
         });
         */
+    }
+
+    public void onBackPressed()
+    {
+        System.exit(1);
+
     }
 
     @Override

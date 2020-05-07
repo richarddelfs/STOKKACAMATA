@@ -69,21 +69,32 @@
 
             <TextView
                 android:id="@+id/TextNama3"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
-                android:text="Nama   :"
+                android:text="Nama"
                 android:textColor="@android:color/background_dark"
                 android:textSize="24sp"
                 app:layout_constraintStart_toEndOf="@+id/Placeholder"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/TextNama3titik"
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="10dp"
+                android:text=":"
+                android:textColor="@android:color/background_dark"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@+id/nama5"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <EditText
                 android:id="@+id/nama5"
-                android:layout_width="0dp"
+                android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:drawable/edit_text"
@@ -91,27 +102,36 @@
                 android:hint="@string/nama1"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/TextNama3"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/TextMerk"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="24dp"
-                android:text="Merk     :"
+                android:text="Merk"
                 android:textColor="@android:color/background_dark"
                 android:textSize="24sp"
                 app:layout_constraintStart_toEndOf="@+id/Placeholder"
                 app:layout_constraintTop_toBottomOf="@+id/TextNama3" />
 
+            <TextView
+                android:id="@+id/TextMerk3titik"
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="10dp"
+                android:text=":"
+                android:textColor="@android:color/background_dark"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@+id/merk1"
+                app:layout_constraintTop_toBottomOf="@+id/TextNama3titik" />
+
             <EditText
                 android:id="@+id/merk1"
-                android:layout_width="0dp"
+                android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:drawable/edit_text"
@@ -119,27 +139,36 @@
                 android:hint="@string/merk"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/TextMerk"
                 app:layout_constraintTop_toBottomOf="@+id/nama5" />
 
             <TextView
                 android:id="@+id/TextTipe"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="24dp"
-                android:text="Tipe      :"
+                android:text="Tipe"
                 android:textColor="@android:color/background_dark"
                 android:textSize="24sp"
                 app:layout_constraintStart_toEndOf="@+id/Placeholder"
                 app:layout_constraintTop_toBottomOf="@+id/TextMerk" />
 
+            <TextView
+                android:id="@+id/TextTipe3titik"
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="10dp"
+                android:text=":"
+                android:textColor="@android:color/background_dark"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@+id/tipe1"
+                app:layout_constraintTop_toBottomOf="@+id/TextMerk3titik" />
+
             <EditText
                 android:id="@+id/tipe1"
-                android:layout_width="0dp"
+                android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:drawable/edit_text"
@@ -147,27 +176,36 @@
                 android:hint="@string/tipe"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/TextTipe"
                 app:layout_constraintTop_toBottomOf="@+id/merk1" />
 
             <TextView
                 android:id="@+id/TextWarna"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="24dp"
-                android:text="Warna   :"
+                android:text="Warna"
                 android:textColor="@android:color/background_dark"
                 android:textSize="24sp"
                 app:layout_constraintStart_toEndOf="@+id/Placeholder"
                 app:layout_constraintTop_toBottomOf="@+id/TextTipe" />
 
+            <TextView
+                android:id="@+id/TextWarna3titik"
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="10dp"
+                android:text=":"
+                android:textColor="@android:color/background_dark"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@+id/warna1"
+                app:layout_constraintTop_toBottomOf="@+id/TextTipe3titik" />
+
             <EditText
                 android:id="@+id/warna1"
-                android:layout_width="0dp"
+                android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:drawable/edit_text"
@@ -175,26 +213,36 @@
                 android:hint="@string/warna"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/TextWarna"
                 app:layout_constraintTop_toBottomOf="@+id/tipe1" />
 
             <TextView
                 android:id="@+id/textJumlah"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="24dp"
-                android:text="Jumlah :"
+                android:text="Jumlah"
                 android:textColor="@android:color/background_dark"
                 android:textSize="24sp"
                 app:layout_constraintStart_toEndOf="@+id/Placeholder"
                 app:layout_constraintTop_toBottomOf="@+id/TextWarna" />
 
+            <TextView
+                android:id="@+id/TextJumlah3titik"
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="10dp"
+                android:text=":"
+                android:textColor="@android:color/background_dark"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@+id/jumlah1"
+                app:layout_constraintTop_toBottomOf="@+id/TextWarna3titik" />
+
             <EditText
                 android:id="@+id/jumlah1"
-                android:layout_width="0dp"
+                android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:drawable/edit_text"
@@ -202,24 +250,8 @@
                 android:hint="@string/jumlah"
                 android:inputType="number"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textJumlah"
                 app:layout_constraintTop_toBottomOf="@+id/warna1" />
-<!--
-            <EditText
-                android:id="@+id/editgenerateqrcode"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:background="@android:drawable/edit_text"
-                android:ems="10"
-                android:hint="@string/generateqrcode"
-                android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/jumlah1" />
--->
+
             <ImageView
                 android:id="@+id/imageViewgenerateqrcode"
                 android:layout_width="150dp"

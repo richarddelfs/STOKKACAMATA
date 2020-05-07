@@ -50,18 +50,22 @@ public class History extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
                     case R.id.nav_home:
                         startActivity(new Intent(getApplicationContext(), Home.class));
+                        finish();
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.nav_databarang:
                         startActivity(new Intent(getApplicationContext(), HalamanBarang.class));
+                        finish();
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.nav_scan:
                         startActivity(new Intent(getApplicationContext(), Scan.class));
+                        finish();
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.nav_transaksi:
                         startActivity(new Intent(getApplicationContext(), Transaksi.class));
+                        finish();
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.nav_history:
@@ -113,6 +117,12 @@ public class History extends AppCompatActivity {
         };
         adapter1.startListening();
         listView.setAdapter(adapter1);
+    }
+
+    public void onBackPressed(){
+        Intent intent = new Intent(History.this, Home.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override

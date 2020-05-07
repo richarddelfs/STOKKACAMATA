@@ -117,14 +117,17 @@ public class TransaksiUser2 extends AppCompatActivity {
                 switch (menuItem.getItemId()){
                     case R.id.nav_home:
                         startActivity(new Intent(getApplicationContext(), HomeUser2.class));
+                        finish();
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_databarang:
                         startActivity(new Intent(getApplicationContext(), HalamanBarangUser2.class));
+                        finish();
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_scan:
                         startActivity(new Intent(getApplicationContext(), ScanUser2.class));
+                        finish();
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_transaksi:
@@ -199,6 +202,12 @@ public class TransaksiUser2 extends AppCompatActivity {
             }
 
         }
+    }
+
+    public void onBackPressed(){
+        Intent intent = new Intent(TransaksiUser2.this, HomeUser2.class);
+        startActivity(intent);
+        finish();
     }
 
     private void getValues()

@@ -52,11 +52,11 @@ public class HalamanPegawai extends AppCompatActivity {
         });
 
         employeeList = findViewById(R.id.rv_employee);
-        Query query = FirebaseDatabase.getInstance().getReference().child("ProfilePegawai");
-        FirebaseListOptions<ProfilePegawai> options = new FirebaseListOptions.Builder<ProfilePegawai>()
-                .setLayout(R.layout.pegawai_info)
-                .setQuery(query, ProfilePegawai.class)
-                .build();
+//        Query query = FirebaseDatabase.getInstance().getReference().child("ProfilePegawai");
+//        FirebaseListOptions<ProfilePegawai> options = new FirebaseListOptions.Builder<ProfilePegawai>()
+//                .setLayout(R.layout.pegawai_info)
+//                .setQuery(query, ProfilePegawai.class)
+//                .build();
 
         employeeAdapter = new PegawaiAdapter();
         employeeAdapter.delegate = this;
@@ -72,14 +72,20 @@ public class HalamanPegawai extends AppCompatActivity {
         setupdata();
     }
 
+    public void onBackPressed(){
+        Intent intent = new Intent(HalamanPegawai.this, Home.class);
+        startActivity(intent);
+        finish();
+    }
+
     public void setupdata(){
         list.clear();
         mDatabase.child("ProfilePegawai").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot child : dataSnapshot.getChildren()){
-                    ProfilePegawai profileBarang = child.getValue(ProfilePegawai.class);
-                    list.add(profileBarang);
+                    ProfilePegawai profilePegawai = child.getValue(ProfilePegawai.class);
+                    list.add(profilePegawai);
                 }
                 employeeAdapter.employList = list;
                 employeeAdapter.notifyDataSetChanged();

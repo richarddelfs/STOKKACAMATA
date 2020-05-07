@@ -9,7 +9,7 @@
 
     <EditText
         android:id="@+id/tanggallahir2"
-        android:layout_width="0dp"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -24,19 +24,31 @@
 
     <TextView
         android:id="@+id/textdeskripsi3"
-        android:layout_width="wrap_content"
+        android:layout_width="95dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="30dp"
-        android:text="Deskripsi   :"
+        android:layout_marginTop="32dp"
+        android:text="Deskripsi"
         android:textColor="@android:color/background_dark"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/texttgllahir1" />
 
+    <TextView
+        android:id="@+id/textdeskripsi3titik"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text=":"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/deskripsi7"
+        app:layout_constraintStart_toEndOf="@+id/textdeskripsi3"
+        app:layout_constraintTop_toBottomOf="@+id/texttgllahir1" />
+
     <EditText
         android:id="@+id/deskripsi7"
-        android:layout_width="0dp"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -51,19 +63,31 @@
 
     <TextView
         android:id="@+id/texttgllahir1"
-        android:layout_width="wrap_content"
+        android:layout_width="95dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:text="Tgl Lahir    :"
+        android:text="Tgl Lahir"
         android:textColor="@android:color/background_dark"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/texttmplahir1" />
 
+    <TextView
+        android:id="@+id/texttgllahir1titik"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text=":"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/tanggallahir2"
+        app:layout_constraintStart_toEndOf="@+id/texttgllahir1"
+        app:layout_constraintTop_toBottomOf="@+id/texttmplahir1" />
+
     <EditText
         android:id="@+id/tempatlahir2"
-        android:layout_width="0dp"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -78,19 +102,31 @@
 
     <TextView
         android:id="@+id/texttmplahir1"
-        android:layout_width="wrap_content"
+        android:layout_width="95dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:text="Tmp Lahir :"
+        android:layout_marginTop="32dp"
+        android:text="Tmp Lahir"
         android:textColor="@android:color/background_dark"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textnotelp2" />
 
+    <TextView
+        android:id="@+id/texttmplahir1titik"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text=":"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/tempatlahir2"
+        app:layout_constraintStart_toEndOf="@+id/texttmplahir1"
+        app:layout_constraintTop_toBottomOf="@+id/textnotelp2" />
+
     <EditText
         android:id="@+id/notelp2"
-        android:layout_width="0dp"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -105,19 +141,31 @@
 
     <TextView
         android:id="@+id/textnotelp2"
-        android:layout_width="wrap_content"
+        android:layout_width="95dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:text="No Telp     :"
+        android:text="No Telp"
         android:textColor="@android:color/background_dark"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textalamat2" />
 
+    <TextView
+        android:id="@+id/textnotelp2titik"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text=":"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/notelp2"
+        app:layout_constraintStart_toEndOf="@+id/textnotelp2"
+        app:layout_constraintTop_toBottomOf="@+id/textalamat2titik" />
+
     <EditText
         android:id="@+id/alamat2"
-        android:layout_width="0dp"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
@@ -132,14 +180,26 @@
 
     <TextView
         android:id="@+id/textalamat2"
-        android:layout_width="wrap_content"
+        android:layout_width="95dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="40dp"
-        android:text="Alamat     :"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="38dp"
+        android:text="Alamat"
         android:textColor="@android:color/background_dark"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/key3" />
+
+    <TextView
+        android:id="@+id/textalamat2titik"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:text=":"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/alamat2"
+        app:layout_constraintStart_toEndOf="@+id/textalamat2"
         app:layout_constraintTop_toBottomOf="@+id/key3" />
 
     <TextView
@@ -190,19 +250,31 @@
 
     <TextView
         android:id="@+id/textpassword2"
-        android:layout_width="wrap_content"
+        android:layout_width="95dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:text="Password  :"
+        android:layout_marginTop="32dp"
+        android:text="Password"
         android:textColor="@android:color/background_dark"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textdeskripsi3" />
 
+    <TextView
+        android:id="@+id/textpassword2titik"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text=":"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/password3"
+        app:layout_constraintStart_toEndOf="@+id/textpassword2"
+        app:layout_constraintTop_toBottomOf="@+id/textdeskripsi3" />
+
     <EditText
         android:id="@+id/password3"
-        android:layout_width="0dp"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -212,7 +284,6 @@
         android:hint="@string/password1"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textpassword2"
         app:layout_constraintTop_toBottomOf="@+id/deskripsi7" />
 

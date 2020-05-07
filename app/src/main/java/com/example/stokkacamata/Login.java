@@ -3,6 +3,8 @@ package com.example.stokkacamata;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +24,7 @@ public class Login extends AppCompatActivity {
     private FirebaseAuth mfirebaseAuth;
     private String email, password;
     private FirebaseAuth.AuthStateListener mauthStateListener;
+    public static Activity activitylogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class Login extends AppCompatActivity {
         registation1 = findViewById(R.id.registation1);
         TextEmail2 = findViewById(R.id.TextEmail2);
         TextPassword2 = findViewById(R.id.TextPassword2);
+        activitylogin = this;
 
         mauthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -43,6 +47,7 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(Login.this, "Anda berhasil masuk", Toast.LENGTH_SHORT).show();
                     Intent i  = new Intent(Login.this, Home.class);
                     startActivity(i);
+                    finish();
                 }
                 else{
                     Toast.makeText(Login.this, "Silahkan Login", Toast.LENGTH_SHORT).show();
@@ -76,6 +81,7 @@ public class Login extends AppCompatActivity {
                             else{
                                 Intent login = new Intent(Login.this, Home.class);
                                 startActivity(login);
+                                finish();
                             }
                         }
                     });
@@ -91,8 +97,8 @@ public class Login extends AppCompatActivity {
         registation1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent login = new Intent(Login.this, Registration.class);
-                startActivity(login);
+                Intent registraion = new Intent(Login.this, Registration.class);
+                startActivity(registraion);
             }
         });
 
