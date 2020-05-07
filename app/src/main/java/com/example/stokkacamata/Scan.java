@@ -50,6 +50,7 @@ public class Scan extends AppCompatActivity {
     Button btn_start_again;
     FirebaseVisionBarcodeDetectorOptions options;
     FirebaseVisionBarcodeDetector detector;
+    FrameProcessor frameProcessor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,12 +153,14 @@ public class Scan extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        cameraView.addFrameProcessor(new FrameProcessor() {
+//        new FrameProcessor
+        frameProcessor = new FrameProcessor(){
             @Override
             public void process(@NonNull Frame frame) {
                 processImage(getVisionImageFromFrame(frame));
             }
-        });
+        };
+        cameraView.addFrameProcessor(frameProcessor);
     }
 
     private void setupCamera() {
@@ -220,7 +223,7 @@ public class Scan extends AppCompatActivity {
                             isDetected = false;
                             cameraView.close();
                             detector.close();
-                            cameraView.clearFrameProcessors();
+                            cameraView.removeFrameProcessor(frameProcessor);
                             startActivity(intent);
 
                         }catch(IOException error){
