@@ -175,10 +175,11 @@ public class Scan extends AppCompatActivity {
     }
 
     private void processImage(FirebaseVisionImage image) {
-        System.out.println("TEST");
+
 
         if(isDetected)
         {
+            System.out.println("TEST");
             detector.detectInImage(image)
                     .addOnSuccessListener(new OnSuccessListener<List<FirebaseVisionBarcode>>() {
                         @Override
