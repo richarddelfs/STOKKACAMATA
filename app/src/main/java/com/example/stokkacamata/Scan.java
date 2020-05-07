@@ -39,6 +39,7 @@ import com.otaliastudios.cameraview.CameraView;
 import com.otaliastudios.cameraview.frame.Frame;
 import com.otaliastudios.cameraview.frame.FrameProcessor;
 
+import java.io.IOException;
 import java.util.List;
 
 public class Scan extends AppCompatActivity {
@@ -180,7 +181,6 @@ public class Scan extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<List<FirebaseVisionBarcode>>() {
                         @Override
                         public void onSuccess(List<FirebaseVisionBarcode> firebaseVisionBarcodes) {
-                            System.out.println("TEST");
                             processResult(firebaseVisionBarcodes);
                         }
                     })
@@ -205,13 +205,19 @@ public class Scan extends AppCompatActivity {
                 {
                     case FirebaseVisionBarcode.TYPE_TEXT:
                     {
-                        Intent intent = new Intent(Scan.this, EditHapusBarang.class);
-                        intent.putExtra("nama", item.getRawValue());
-                        intent.putExtra("status", status);
-                        intent.putExtra("from", "scan");
-                        firebaseVisionBarcodes.clear();
-                        isDetected = false;
-                        startActivity(intent);
+                        try {
+                            Intent intent = new Intent(Scan.this, EditHapusBarang.class);
+                            intent.putExtra("nama", item.getRawValue());
+                            intent.putExtra("status", status);
+                            intent.putExtra("from", "scan");
+                            firebaseVisionBarcodes.clear();
+                            isDetected = false;
+                            detector.close();
+                            startActivity(intent);
+                        }catch(IOException error){
+                            System.out.println("DETECTOR NOT CLOSED");
+                        }
+
                     }
                     break;
                     case FirebaseVisionBarcode.TYPE_URL:
@@ -267,7 +273,6 @@ public class Scan extends AppCompatActivity {
                 .setFormat(FirebaseVisionImageMetadata.IMAGE_FORMAT_NV21)
                 .setHeight(frame.getSize().getHeight())
                 .setWidth(frame.getSize().getWidth())
-                //.setRotation(frame.getRotation())
                 .build();
         return FirebaseVisionImage.fromByteArray(data,metadata);
     }
