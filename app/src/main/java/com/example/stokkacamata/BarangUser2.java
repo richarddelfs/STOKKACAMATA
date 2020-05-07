@@ -74,12 +74,10 @@ public class BarangUser2 extends AppCompatActivity {
         warna = findViewById(R.id.warna1user2);
         jumlah = findViewById(R.id.jumlah1user2);
         Placeholder = findViewById(R.id.Placeholderuser2);
-        //editgenerateqrcode = findViewById(R.id.editgenerateqrcode);
+
         imageViewgenerateqrcode = findViewById(R.id.imageViewgenerateqrcodeuser2);
         buttongenerateqrcode = findViewById(R.id.buttongenerateqrcodeuser2);
-        //Placeholder1 = findViewById(R.id.Placeholder1);
-        //Placeholder2 = findViewById(R.id.Placeholder2);
-        //Placeholder3 = findViewById(R.id.Placeholder3);
+
         ButtonTambahBarang = findViewById(R.id.ButtonTambahBaranguser2);
         database = FirebaseDatabase.getInstance();
         ref = database.getReference("ProfileBarang");
@@ -161,43 +159,10 @@ public class BarangUser2 extends AppCompatActivity {
                     }
                 });
 
-//                final StorageReference storageReference = Qrcode.child("qrcode/"+System.currentTimeMillis());
-//                storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                    @Override
-//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                            @Override
-//                            public void onSuccess(Uri uri) {
-//                                String qrcodeurl = uri.toString();
-//                                System.out.println("qrcodeurl" + qrcodeurl);
-//                                Map<String, Object> data = new HashMap<>();
-//                                data.put("qrcode",qrcodeurl);
-//                                ref.child(profileBarang.getNama()).setValue(data);
-//                            }
-//                        });
-//                    }
-//                });
                 Toast.makeText(BarangUser2.this, "Data Barang telah berhasil masuk", Toast.LENGTH_LONG).show();
 //                Intent barang = new Intent(BarangUser2.this, HomeUser2.class);
 //                startActivity(barang);
                 finish();
-                /*
-                ref.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        getValues();
-                        ref.child(profileBarang.getNama()).setValue(profileBarang);
-                        Toast.makeText(Barang.this, "Data Barang telah berhasil masuk", Toast.LENGTH_LONG).show();
-                        Intent barang = new Intent(Barang.this, Home.class);
-                        startActivity(barang);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Toast.makeText(Barang.this, "Data Barang belum berhasil masuk", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                */
             }
         });
 

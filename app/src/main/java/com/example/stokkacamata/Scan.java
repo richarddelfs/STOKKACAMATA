@@ -9,6 +9,7 @@ import android.content.ClipboardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,6 +43,7 @@ import java.util.List;
 
 public class Scan extends AppCompatActivity {
     private ImageView scan;
+    String status = "pemilik";
     CameraView cameraView;
     boolean isDetected = false;
     Button btn_start_again;
@@ -52,6 +54,7 @@ public class Scan extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan);
+        System.out.println("abc");
 
         //scan = findViewById(R.id.scan);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -63,20 +66,24 @@ public class Scan extends AppCompatActivity {
                 switch (menuItem.getItemId()){
                     case R.id.nav_home:
                         startActivity(new Intent(getApplicationContext(), Home.class));
+                        finish();
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_databarang:
                         startActivity(new Intent(getApplicationContext(), HalamanBarang.class));
+                        finish();
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_scan:
                         return true;
                     case R.id.nav_transaksi:
                         startActivity(new Intent(getApplicationContext(), Transaksi.class));
+                        finish();
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_history:
                         startActivity(new Intent(getApplicationContext(), History.class));
+                        finish();
                         overridePendingTransition(0,0);
                         return true;
                 }
@@ -200,6 +207,8 @@ public class Scan extends AppCompatActivity {
 //                        createDialog(item.getRawValue());
                         Intent intent = new Intent(Scan.this, EditHapusBarang.class);
                         intent.putExtra("nama", item.getRawValue());
+                        intent.putExtra("status", status);
+                        intent.putExtra("from", "scan");
                         startActivity(intent);
                     }
                     break;
@@ -229,6 +238,12 @@ public class Scan extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    public void onBackPressed(){
+        Intent intent = new Intent(Scan.this, Home.class);
+        startActivity(intent);
+        finish();
     }
 
     private void createDialog(String text) {

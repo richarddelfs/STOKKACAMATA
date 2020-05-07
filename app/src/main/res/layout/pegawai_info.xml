@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="393dp"
     android:orientation="vertical">
 
     <ImageView
@@ -16,10 +16,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_employ_name"
-        android:layout_width="match_parent"
+        android:id="@+id/TextNamapegawai"
+        android:layout_width="95dp"
         android:layout_height="wrap_content"
-        android:text="@string/nama1"
+        android:text="Nama"
         android:textColor="@android:color/background_dark"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -27,69 +27,231 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_employ" />
 
     <TextView
+        android:id="@+id/TextNamapegawaititik"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:text=":"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tv_employ_name"
+        app:layout_constraintTop_toBottomOf="@+id/iv_employ" />
+
+    <TextView
+        android:id="@+id/tv_employ_name"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="@string/nama1"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_employ" />
+
+    <TextView
+        android:id="@+id/TextAlamatpegawai"
+        android:layout_width="95dp"
+        android:layout_height="wrap_content"
+        android:text="Alamat"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextNamapegawai" />
+
+    <TextView
+        android:id="@+id/TextNamaalamattitik"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:text=":"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tv_employ_address"
+        app:layout_constraintTop_toBottomOf="@+id/TextNamapegawaititik" />
+
+    <TextView
         android:id="@+id/tv_employ_address"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="@string/alamat1"
         android:textColor="@android:color/background_dark"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_employ_name" />
 
     <TextView
+        android:id="@+id/TextNotelppegawai"
+        android:layout_width="95dp"
+        android:layout_height="wrap_content"
+        android:text="No Telp"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextAlamatpegawai" />
+
+    <TextView
+        android:id="@+id/TextNamanotelptitik"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:text=":"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tv_employ_phone"
+        app:layout_constraintTop_toBottomOf="@+id/TextNamaalamattitik" />
+
+    <TextView
         android:id="@+id/tv_employ_phone"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="@string/notelp1"
         android:textColor="@android:color/background_dark"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_employ_address" />
 
     <TextView
+        android:id="@+id/TextTmpLahirpegawai"
+        android:layout_width="95dp"
+        android:layout_height="wrap_content"
+        android:text="Tmp Lahir"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextNotelppegawai" />
+
+    <TextView
+        android:id="@+id/TextNamatemplahirtitik"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:text=":"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tv_employ_pob"
+        app:layout_constraintTop_toBottomOf="@+id/TextNamanotelptitik" />
+
+    <TextView
         android:id="@+id/tv_employ_pob"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="@string/tempatlahir1"
         android:textColor="@android:color/background_dark"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_employ_phone" />
 
     <TextView
+        android:id="@+id/TextTglLahirpegawai"
+        android:layout_width="95dp"
+        android:layout_height="wrap_content"
+        android:text="Tgl Lahir"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextTmpLahirpegawai" />
+
+    <TextView
+        android:id="@+id/TextNamatgllahirtitik"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:text=":"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tv_employ_dob"
+        app:layout_constraintTop_toBottomOf="@+id/TextNamatemplahirtitik" />
+
+    <TextView
         android:id="@+id/tv_employ_dob"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="@string/tanggallahir1"
         android:textColor="@android:color/background_dark"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_employ_pob" />
 
     <TextView
+        android:id="@+id/TextDeskripsipegawai"
+        android:layout_width="95dp"
+        android:layout_height="wrap_content"
+        android:text="Deskripsi"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextTglLahirpegawai" />
+
+    <TextView
+        android:id="@+id/TextNamadeskripsititik"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:text=":"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tv_employ_desc"
+        app:layout_constraintTop_toBottomOf="@+id/TextNamatgllahirtitik" />
+
+    <TextView
         android:id="@+id/tv_employ_desc"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="@string/deskripsi1"
         android:textColor="@android:color/background_dark"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_employ_dob" />
 
     <TextView
+        android:id="@+id/TextPasswordpegawai"
+        android:layout_width="95dp"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextDeskripsipegawai" />
+
+    <TextView
+        android:id="@+id/TextNamapasswordtitik"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:text=":"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/et_employ_password"
+        app:layout_constraintTop_toBottomOf="@+id/TextNamadeskripsititik" />
+
+    <TextView
         android:id="@+id/et_employ_password"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="@string/password1"
         android:textColor="@android:color/background_dark"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_employ_desc" />
+
+    <ImageView
+        android:id="@+id/imagegaris"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        app:layout_constraintTop_toBottomOf="@+id/et_employ_password"
+        app:srcCompat="@drawable/blackline"
+        tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

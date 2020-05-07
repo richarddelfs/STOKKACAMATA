@@ -81,21 +81,31 @@
 
             <TextView
                 android:id="@+id/textnama"
-                android:layout_width="wrap_content"
+                android:layout_width="95dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
-                android:text="Nama       :"
+                android:text="Nama"
                 android:textColor="@android:color/background_dark"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profilepicture2" />
 
+            <TextView
+                android:id="@+id/textnamatitik"
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text=":"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/nama"
+                app:layout_constraintTop_toBottomOf="@+id/profilepicture2" />
+
             <EditText
                 android:id="@+id/nama"
-                android:layout_width="0dp"
+                android:layout_width="270dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:drawable/edit_text"
@@ -103,26 +113,35 @@
                 android:hint="@string/nama1"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textnama"
                 app:layout_constraintTop_toBottomOf="@+id/profilepicture2" />
 
             <TextView
                 android:id="@+id/textalamat"
-                android:layout_width="wrap_content"
+                android:layout_width="95dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="30dp"
-                android:text="Alamat     :"
+                android:text="Alamat"
                 android:textColor="@android:color/background_dark"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textnama" />
 
+            <TextView
+                android:id="@+id/textalamattitik"
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text=":"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/alamat"
+                app:layout_constraintTop_toBottomOf="@+id/textnama" />
+
             <EditText
                 android:id="@+id/alamat"
-                android:layout_width="0dp"
+                android:layout_width="270dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:drawable/edit_text"
@@ -130,26 +149,35 @@
                 android:hint="@string/alamat1"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textalamat"
                 app:layout_constraintTop_toBottomOf="@+id/nama" />
 
             <TextView
                 android:id="@+id/textnotelp"
-                android:layout_width="wrap_content"
+                android:layout_width="95dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="30dp"
-                android:text="No telp     :"
+                android:text="No telp"
                 android:textColor="@android:color/background_dark"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textalamat" />
 
+            <TextView
+                android:id="@+id/textnotelptitik"
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text=":"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/notelp"
+                app:layout_constraintTop_toBottomOf="@+id/textalamat" />
+
             <EditText
                 android:id="@+id/notelp"
-                android:layout_width="0dp"
+                android:layout_width="270dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:drawable/edit_text"
@@ -157,26 +185,35 @@
                 android:hint="@string/notelp1"
                 android:inputType="number"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textnotelp"
                 app:layout_constraintTop_toBottomOf="@+id/alamat" />
 
             <TextView
                 android:id="@+id/texttempattanggallahir"
-                android:layout_width="wrap_content"
+                android:layout_width="95dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="20dp"
-                android:text="Tmp lahir   :"
+                android:text="Tmp lahir"
                 android:textColor="@android:color/background_dark"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/notelp" />
 
+            <TextView
+                android:id="@+id/texttempattanggallahirtitik"
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text=":"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/tempatlahir"
+                app:layout_constraintTop_toBottomOf="@+id/notelp" />
+
             <EditText
                 android:id="@+id/tempatlahir"
-                android:layout_width="0dp"
+                android:layout_width="270dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:drawable/edit_text"
@@ -184,14 +221,12 @@
                 android:hint="@string/tempatlahir1"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/texttempattanggallahir"
                 app:layout_constraintTop_toBottomOf="@+id/notelp" />
 
             <EditText
                 android:id="@+id/tanggallahir"
-                android:layout_width="0dp"
+                android:layout_width="270dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:drawable/edit_text"
@@ -199,26 +234,36 @@
                 android:hint="@string/tanggallahir1"
                 android:inputType="date"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/texttgllahir"
                 app:layout_constraintTop_toBottomOf="@+id/tempatlahir" />
 
             <TextView
                 android:id="@+id/textdeskripsi"
-                android:layout_width="wrap_content"
+                android:layout_width="95dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="30dp"
-                android:text="Deskripsi  :"
+                android:text="Deskripsi"
                 android:textColor="@android:color/background_dark"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/texttgllahir" />
 
+            <TextView
+                android:id="@+id/textdeskripsititik"
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text=":"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+
+                app:layout_constraintEnd_toStartOf="@+id/deskripsi"
+                app:layout_constraintTop_toBottomOf="@+id/texttgllahir" />
+
             <EditText
                 android:id="@+id/deskripsi"
-                android:layout_width="0dp"
+                android:layout_width="270dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:drawable/edit_text"
@@ -227,26 +272,35 @@
                 android:hint="@string/deskripsi1"
                 android:inputType="textMultiLine"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textdeskripsi"
                 app:layout_constraintTop_toBottomOf="@+id/tanggallahir" />
 
             <TextView
                 android:id="@+id/textpassword"
-                android:layout_width="wrap_content"
+                android:layout_width="95dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="30dp"
-                android:text="@string/password"
+                android:text="Password"
                 android:textColor="@android:color/background_dark"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textdeskripsi" />
 
+            <TextView
+                android:id="@+id/textpasswordtitik"
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text=":"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/password"
+                app:layout_constraintTop_toBottomOf="@+id/textdeskripsi" />
+
             <EditText
                 android:id="@+id/password"
-                android:layout_width="0dp"
+                android:layout_width="270dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:drawable/edit_text"
@@ -254,19 +308,30 @@
                 android:hint="@string/password1"
                 android:inputType="textPassword"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textpassword"
                 app:layout_constraintTop_toBottomOf="@+id/deskripsi" />
 
             <TextView
                 android:id="@+id/texttgllahir"
-                android:layout_width="wrap_content"
+                android:layout_width="95dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="30dp"
-                android:text="Tgl lahir    :"
+                android:text="Tgl lahir"
                 android:textColor="@android:color/background_dark"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/texttempattanggallahir" />
+
+            <TextView
+                android:id="@+id/texttgllahirtitik"
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="30dp"
+                android:text=":"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/tanggallahir"
                 app:layout_constraintTop_toBottomOf="@+id/texttempattanggallahir" />
 
             <Button

@@ -121,6 +121,7 @@
         android:layout_height="?attr/actionBarSize"
         android:layout_margin="5dp"
         android:padding="10dp"
+        android:hint="@string/search"
         app:queryHint="Search"
         android:background="@android:drawable/edit_text"
         app:layout_constraintEnd_toEndOf="parent"

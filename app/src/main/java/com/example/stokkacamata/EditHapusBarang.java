@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,6 +23,7 @@ public class EditHapusBarang extends AppCompatActivity {
     EditText merk, tipe, warna, jumlah, qrcode;
     TextView key10;
     DatabaseReference ref;
+    String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +36,7 @@ public class EditHapusBarang extends AppCompatActivity {
         jumlah = findViewById(R.id.jumlah2);
         key10 = findViewById(R.id.key1);
         //        qrcode = findViewById(R.id.qrcode);
-        String key = getIntent().getExtras().get("nama").toString();
+        key = getIntent().getExtras().get("nama").toString();
         ref = FirebaseDatabase.getInstance().getReference().child("ProfileBarang").child(key);
         key10.setText(key);
         merk.setText(getIntent().getStringExtra("merk"));
@@ -95,24 +98,45 @@ public class EditHapusBarang extends AppCompatActivity {
 
     public void Update(View view)
     {
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+//        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                dataSnapshot.getRef().child("merk").setValue(merk.getText().toString());
+//                dataSnapshot.getRef().child("tipe").setValue(tipe.getText().toString());
+//                dataSnapshot.getRef().child("warna").setValue(warna.getText().toString());
+//                dataSnapshot.getRef().child("jumlah").setValue(jumlah.getText().toString());
+//                Toast.makeText(EditHapusBarang.this, "Data Barang telah berhasil diupdate", Toast.LENGTH_LONG).show();
+////                Intent intent = new Intent(EditHapusBarang.this, Scan.class);
+////                startActivity(intent);
+//                finish();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                Toast.makeText(EditHapusBarang.this, "Data Barang belum berhasil diupdate", Toast.LENGTH_LONG).show();
+//            }
+//        });
+        ProfileBarang profileBarang = new ProfileBarang();
+        profileBarang.setMerk(merk.getText().toString());
+        profileBarang.setTipe(tipe.getText().toString());
+        profileBarang.setWarna(warna.getText().toString());
+        profileBarang.setJumlah(jumlah.getText().toString());
+
+        ref.setValue(profileBarang).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                dataSnapshot.getRef().child("merk").setValue(merk.getText().toString());
-                dataSnapshot.getRef().child("tipe").setValue(tipe.getText().toString());
-                dataSnapshot.getRef().child("warna").setValue(warna.getText().toString());
-                dataSnapshot.getRef().child("jumlah").setValue(jumlah.getText().toString());
+            public void onSuccess(Void aVoid) {
                 Toast.makeText(EditHapusBarang.this, "Data Barang telah berhasil diupdate", Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(EditHapusBarang.this, Scan.class);
-//                startActivity(intent);
                 finish();
             }
 
+        }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onFailure(@NonNull Exception e) {
                 Toast.makeText(EditHapusBarang.this, "Data Barang belum berhasil diupdate", Toast.LENGTH_LONG).show();
             }
-        });
+        })
+        ;
+
 
     }
 

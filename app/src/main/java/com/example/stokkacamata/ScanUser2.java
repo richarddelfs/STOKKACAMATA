@@ -34,6 +34,7 @@ import java.util.List;
 
 public class ScanUser2 extends AppCompatActivity {
     private ImageView scan;
+    String status = "pegawai";
     CameraView cameraView;
     boolean isDetected = false;
     Button btn_start_again;
@@ -55,16 +56,19 @@ public class ScanUser2 extends AppCompatActivity {
                 switch (menuItem.getItemId()){
                     case R.id.nav_home:
                         startActivity(new Intent(getApplicationContext(), HomeUser2.class));
+                        finish();
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_databarang:
                         startActivity(new Intent(getApplicationContext(), HalamanBarangUser2.class));
+                        finish();
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_scan:
                         return true;
                     case R.id.nav_transaksi:
                         startActivity(new Intent(getApplicationContext(), TransaksiUser2.class));
+                        finish();
                         overridePendingTransition(0,0);
                         return true;
                         /*
@@ -194,6 +198,8 @@ public class ScanUser2 extends AppCompatActivity {
 //                        createDialog(item.getRawValue());
                         Intent intent = new Intent(ScanUser2.this, EditHapusBarang.class);
                         intent.putExtra("nama", item.getRawValue());
+                        intent.putExtra("status", status);
+                        intent.putExtra("from", "scan");
                         startActivity(intent);
                     }
                     break;
@@ -223,6 +229,12 @@ public class ScanUser2 extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    public void onBackPressed(){
+        Intent intent = new Intent(ScanUser2.this, HomeUser2.class);
+        startActivity(intent);
+        finish();
     }
 
     private void createDialog(String text) {

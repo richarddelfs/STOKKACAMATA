@@ -9,7 +9,7 @@
 
     <EditText
         android:id="@+id/jumlah2"
-        android:layout_width="0dp"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -24,7 +24,7 @@
 
     <EditText
         android:id="@+id/warna"
-        android:layout_width="0dp"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -39,7 +39,7 @@
 
     <EditText
         android:id="@+id/tipe"
-        android:layout_width="0dp"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -54,38 +54,74 @@
 
     <TextView
         android:id="@+id/textJumlah2"
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:text="Jumlah :"
+        android:layout_marginTop="30dp"
+        android:text="Jumlah"
         android:textColor="@android:color/background_dark"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textWarna" />
 
     <TextView
+        android:id="@+id/textJumlah2titik"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text=":"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/jumlah2"
+        app:layout_constraintStart_toEndOf="@+id/textJumlah2"
+        app:layout_constraintTop_toBottomOf="@+id/textWarna" />
+
+    <TextView
         android:id="@+id/textWarna"
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:text="Warna   :"
+        android:layout_marginTop="30dp"
+        android:text="Warna"
         android:textColor="@android:color/background_dark"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textTipe" />
 
     <TextView
+        android:id="@+id/textWarnatitik"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text=":"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/warna"
+        app:layout_constraintStart_toEndOf="@+id/textWarna"
+        app:layout_constraintTop_toBottomOf="@+id/textTipe" />
+
+    <TextView
         android:id="@+id/textTipe"
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:text="Tipe      :"
+        android:layout_marginTop="30dp"
+        android:text="Tipe"
         android:textColor="@android:color/background_dark"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textMerk1" />
+
+    <TextView
+        android:id="@+id/textTipetitik"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text=":"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/tipe"
+        app:layout_constraintStart_toEndOf="@+id/textTipe"
         app:layout_constraintTop_toBottomOf="@+id/textMerk1" />
 
     <TextView
@@ -136,19 +172,31 @@
 
     <TextView
         android:id="@+id/textMerk1"
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:text="Merk      :"
+        android:text="Merk"
         android:textColor="@android:color/background_dark"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/key1" />
 
+    <TextView
+        android:id="@+id/textMerk1titik"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text=":"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/merk3"
+        app:layout_constraintStart_toEndOf="@+id/textMerk1"
+        app:layout_constraintTop_toBottomOf="@+id/key1" />
+
     <EditText
         android:id="@+id/merk3"
-        android:layout_width="0dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
