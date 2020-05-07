@@ -180,6 +180,7 @@ public class Scan extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<List<FirebaseVisionBarcode>>() {
                         @Override
                         public void onSuccess(List<FirebaseVisionBarcode> firebaseVisionBarcodes) {
+                            System.out.println("TEST");
                             processResult(firebaseVisionBarcodes);
                         }
                     })
